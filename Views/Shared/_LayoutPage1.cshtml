@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+
+        .headfoot {
+            background-color: #00688B;
+            text-align: center;
+            height: 100%;
+        }
+
+        .docSym {
+            font-size: 80px;
+        }
+
+        #title {
+            color: white;
+            display: inline;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        #foot {
+            height: 100px;
+        }
+
+        .auto-style2 {
+            background-color: #00688B;
+            text-align: center;
+            height: 124px;
+        }
+    </style>
+</head>
+<body>
+        <table class="auto-style1" border="1">
+            <tr>
+                <td colspan="5">
+                    <div class="headfoot">
+                        <h1 id="title"><span class="docSym">☤</span>T.A.N.K's Doctors Office<span class="docSym">☤</span></h1>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div>
+                        @RenderBody()
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="headfoot" id="foot"></td>
+            </tr>
+        </table>
+</body>
+</html>
