@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HospitalRecordsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DoctorTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PatientTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="docid" Type="int" />
+          <Property Name="admission" Type="date" />
+          <Property Name="discharge" Type="date" />
+          <Property Name="isdischarge" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="UserTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username " Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="admin" Type="bit" />
+        </EntityType>
+        <Association Name="FK__PatientTb__docid__15502E78">
+          <End Role="DoctorTbl" Type="Self.DoctorTbl" Multiplicity="0..1" />
+          <End Role="PatientTbl" Type="Self.PatientTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorTbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientTbl">
+              <PropertyRef Name="docid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HospitalRecordsModelStoreContainer">
+          <EntitySet Name="DoctorTbl" EntityType="Self.DoctorTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientTbl" EntityType="Self.PatientTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PatientTb__docid__15502E78" Association="Self.FK__PatientTb__docid__15502E78">
+            <End Role="DoctorTbl" EntitySet="DoctorTbl" />
+            <End Role="PatientTbl" EntitySet="PatientTbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalRecordsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DoctorTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PatientTbls" Relationship="Self.FK__PatientTb__docid__15502E78" FromRole="DoctorTbl" ToRole="PatientTbl" />
+        </EntityType>
+        <EntityType Name="PatientTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docid" Type="Int32" />
+          <Property Name="admission" Type="DateTime" Precision="0" />
+          <Property Name="discharge" Type="DateTime" Precision="0" />
+          <Property Name="isdischarge" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="DoctorTbl" Relationship="Self.FK__PatientTb__docid__15502E78" FromRole="PatientTbl" ToRole="DoctorTbl" />
+        </EntityType>
+        <EntityType Name="UserTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="admin" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK__PatientTb__docid__15502E78">
+          <End Role="DoctorTbl" Type="Self.DoctorTbl" Multiplicity="0..1" />
+          <End Role="PatientTbl" Type="Self.PatientTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorTbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientTbl">
+              <PropertyRef Name="docid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HospitalRecordsDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DoctorTbls" EntityType="Self.DoctorTbl" />
+          <EntitySet Name="PatientTbls" EntityType="Self.PatientTbl" />
+          <EntitySet Name="UserTbls" EntityType="Self.UserTbl" />
+          <AssociationSet Name="FK__PatientTb__docid__15502E78" Association="Self.FK__PatientTb__docid__15502E78">
+            <End Role="DoctorTbl" EntitySet="DoctorTbls" />
+            <End Role="PatientTbl" EntitySet="PatientTbls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HospitalRecordsModelStoreContainer" CdmEntityContainer="HospitalRecordsDBContext">
+          <EntitySetMapping Name="DoctorTbls">
+            <EntityTypeMapping TypeName="HospitalRecordsModel.DoctorTbl">
+              <MappingFragment StoreEntitySet="DoctorTbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientTbls">
+            <EntityTypeMapping TypeName="HospitalRecordsModel.PatientTbl">
+              <MappingFragment StoreEntitySet="PatientTbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="docid" ColumnName="docid" />
+                <ScalarProperty Name="admission" ColumnName="admission" />
+                <ScalarProperty Name="discharge" ColumnName="discharge" />
+                <ScalarProperty Name="isdischarge" ColumnName="isdischarge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTbls">
+            <EntityTypeMapping TypeName="HospitalRecordsModel.UserTbl">
+              <MappingFragment StoreEntitySet="UserTbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username_" ColumnName="username " />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
