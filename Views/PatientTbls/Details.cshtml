@@ -1,0 +1,67 @@
+﻿@model Assignment3_MVC_HospitalRecords.Models.PatientTbl
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PatientTbl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            FirstName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstname)
+        </dd>
+
+        <dt>
+            LastName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastname)
+        </dd>
+
+        <dt>
+            AdmissionDate
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.admission)
+        </dd>
+
+        <dt>
+            DischargeDate
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.discharge)
+        </dd>
+
+        <dt>
+            IsDischarge
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isdischarge)
+        </dd>
+
+        <dt>
+            Doctor's Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoctorTbl.firstname)
+        </dd>
+
+    </dl>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

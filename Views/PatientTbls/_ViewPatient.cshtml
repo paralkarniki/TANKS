@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Assignment3_MVC_HospitalRecords.Models.PatientTbl>
+
+<table class="table" style="border:1px solid black">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <tbody>
+            Search By:
+        </tbody>
+        @Html.RadioButton("First Name", "FirstName",true)<text>First Name</text>
+        @Html.RadioButton("Last Name", "LastName")<text>Last Name</text>
+        <br />
+        @Html.TextBox("SearchBox")<input type="submit" value="Search"/>
+    }
+    
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Admission Date
+        </th>
+        <th>
+            Doctor Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.admission)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorTbl.firstname)
+            </td>
+        </tr>
+    }
+
+</table>
+

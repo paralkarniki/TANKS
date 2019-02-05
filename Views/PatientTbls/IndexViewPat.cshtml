@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Assignment3_MVC_HospitalRecords.Models.PatientTbl>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateViewPat")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.admission)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.discharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isdischarge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorTbl.firstname)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.admission)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isdischarge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorTbl.firstname)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditViewPat", new { id = item.Id }) |
+                @Html.ActionLink("Details", "DetailsViewPat", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteViewPat", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
