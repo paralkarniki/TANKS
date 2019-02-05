@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript" language="javascript">
+    function ClearResults() {
+        $("#divDisplay").empty();
+    }
+</script>
+
+<h2>Welcome User</h2>
+
+<table class="auto-style1" border="1">
+    <tr style="text-align:center">
+        <td>
+            @Html.ActionLink("Logout", "Logout", "Home")
+        </td>
+        <td>
+            @Ajax.ActionLink("View Patients", "AllPat", "PatientTbls", new AjaxOptions
+       {
+           HttpMethod = "GET",
+           UpdateTargetId = "divDisplay",
+           InsertionMode = InsertionMode.Replace,
+           LoadingElementId = "divLoading",
+           OnBegin = "ClearResults"
+       })
+        </td>
+        <td>
+            @Ajax.ActionLink("View Patients History","All", "PatientTbls", new AjaxOptions
+       {
+           HttpMethod = "GET",
+           UpdateTargetId = "divDisplay",
+           InsertionMode = InsertionMode.Replace,
+           LoadingElementId = "divLoading",
+           OnBegin = "ClearResults"
+       })
+        </td>
+    </tr>
+</table>
+
+<div id="divLoading" style="display:none">
+    <img src="~/Images/spiffygif_30x30.gif" />
+</div>
+
+<div id="divDisplay" style="margin:auto" >
+
+</div>
